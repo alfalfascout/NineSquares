@@ -1,3 +1,8 @@
+"""
+NineSquares command line game
+Created by Alan Jacon "alfalfascout" on 22 September 2015
+"""
+
 from random import randint
 
 class Button(object):
