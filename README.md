@@ -2,7 +2,9 @@
 A nine button game where the goal is to activate all the buttons, but each button may also toggle others.
 
 What's already done:
-The command line script runs as intended. You can play it to get a feel for how the game itself works.
+
+- The command line script runs as intended.
+- There's a simple javascript/html web app.
 
 What needs doing:
 
@@ -14,9 +16,6 @@ A Windows GUI
 - Ideally, do this second. 
 
 What else could be done:
-
-A Web App
-- Javascript + HTML? A Java applet?
 
 A Linux GUI
 - To do when a linux os computer is available

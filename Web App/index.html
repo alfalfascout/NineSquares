@@ -1,0 +1,44 @@
+<html>
+
+<head>
+
+<title>Nine Squares Game</title>
+
+<link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+
+
+<body>
+
+<div id="game">
+    
+    <div class="game-grid">
+        <div class="game-row">
+            <div class="button" id="b0" onclick="turnAffects(b0)">&nbsp;</div>
+            <div class="button" id="b1" onclick="turnAffects(b1)">&nbsp;</div>
+            <div class="button" id="b2" onclick="turnAffects(b2)">&nbsp;</div>
+        </div>
+        <div class="game-row">
+            <div class="button" id="b3" onclick="turnAffects(b3)">&nbsp;</div>
+            <div class="button" id="b4" onclick="turnAffects(b4)">&nbsp;</div>
+            <div class="button" id="b5" onclick="turnAffects(b5)">&nbsp;</div>
+        </div>
+        <div class="game-row">
+            <div class="button" id="b6" onclick="turnAffects(b6)">&nbsp;</div>
+            <div class="button" id="b7" onclick="turnAffects(b7)">&nbsp;</div>
+            <div class="button" id="b8" onclick="turnAffects(b8)">&nbsp;</div>
+        </div>
+    </div>
+    <div class="utils">
+        <div id="message">&nbsp;</div>
+        <div class="reset" onclick="randomizeButtons()">Reset</div>
+    </div>
+    
+</div>
+
+<script type="text/javascript" src="game.js"></script>
+
+</body>
+
+</html> 
