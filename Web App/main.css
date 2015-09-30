@@ -1,13 +1,30 @@
 body {
-    background-color: #999;
+    background-color: #eee;
+    font-family: Geneva, Arial, sans-serif;
+}
+
+#game {
+    margin: 50px 0px 100px;
+}
+
+#intro, .utils {
+    width: 350px;
+    min-height: 50px;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 10px;
 }
 
 .game-grid {
-    width: 460px;
-    height: 490px;
+    width: 430px;
+    height: 460px;
     margin: auto;
-    background-color: #ccc;
-    padding: 30px;
+    padding: 20px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -17,7 +34,7 @@ body {
 }
 
 .game-row {
-    height: 150px;
+    height: 140px;
     width: 460px;
     margin-bottom: 20px;
 }
@@ -28,19 +45,19 @@ body {
 
 .button {
     float: left;
-    width: 140px;
-    height: 140px;
+    width: 130px;
+    height: 130px;
     margin-top: 0px;
     margin-right: 20px;
-    background-color: #eee;
-    border-width: 0px 0px 10px;
-    border-color: #ddd;
+    border-width: 0px 1px 5px;
+    border-color: #000;
     border-style: solid;
+    border-radius: 10px;
 }
 
 .button:active {
-    border-width: 0px 0px 1px;
-    margin-top: 9px;
+    border-width: 0px 1px 1px;
+    margin-top: 6px;
 }
 
 .button:last-child {
@@ -56,15 +73,6 @@ body {
     border-color: #a6a;
 }
 
-.utils {
-    width: 350px;
-    height: 50px;
-    padding: 25px;
-    background-color: #ccc;
-    color: #333;
-    margin: 0px auto;
-}
-
 #message {
     float: left;
     width: 150px;
@@ -76,11 +84,11 @@ body {
     float: right;
     width: 100px;
     line-height: 36px;
-    margin: 7px 50px;
-    background-color: #eee;
-    border-width: 0px 0px 4px;
-    border-color: #ddd;
+    margin: 7px 10px;
+    border-width: 0px 0px 2px;
+    border-color: #000;
     border-style: solid;
+    border-radius: 4px;
     text-align: center;
 }
 
@@ -88,3 +96,158 @@ body {
     border-width: 0px 0px 1px;
     margin-top: 10px;
 }
+
+.colorchoice {
+    width: 300px;
+    line-height: 24px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.colorchoice div {
+    display: inline-block;
+    margin: 4px 4px -4px;
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+}
+
+.about {
+    width: 450px;
+    margin: 50px auto;
+}
+
+#night {
+    background-color: #1A525C;
+}
+#day {
+    background-color: #fdcb33;
+}
+#chalk {
+    background-color: #f9c;
+}
+#bw {
+    background-color: #ccc;
+}
+
+
+        /* MIDNIGHT COLORS */
+
+body.midnight {
+    background-color: #202024;
+    color: #ABB3B6;
+}
+
+.midnight a {
+    color: #A9B0B3;
+}
+
+.midnight .on {
+    background-color: #0D8185;
+    border-color: #1A525C;
+}
+
+.midnight .off {
+    background-color: #483078;
+    border-color: #301860;
+}
+
+.midnight .utils {
+    background-color: #483078;
+}
+
+.midnight .reset {
+    background-color: #0D8185;
+    border-color: #1A525C;
+}
+
+        /* DAYLIGHT COLORS */
+
+body.daylight {
+    background-color: #bce8e9;
+    color: #505080;
+}
+
+.daylight a {
+    color: #505080;
+}
+
+.daylight .on {
+    background-color: #fdcb33;
+    border-color: #efa61a;
+}
+
+.daylight .off {
+    background-color: #9ED54C;
+    border-color: #59A80F;
+}
+
+.daylight .utils {
+    background-color: #9ED54C;
+}
+
+.daylight .reset {
+    background-color: #fdcb33;
+    border-color: #efa61a;
+}
+
+        /* PASTEL COLORS */
+
+body.pastel {
+    background-color: #ee9;
+    color: #8b3d68;
+}
+
+.pastel a {
+    color: #8b3d68;
+}
+
+.pastel .on {
+    background-color: #f9c;
+    border-color: #c69;
+}
+
+.pastel .off {
+    background-color: #6e8;
+    border-color: #3a6;
+}
+
+.pastel .utils {
+    background-color: #6e8;
+}
+
+.pastel .reset {
+    background-color: #f9c;
+    border-color: #c69;
+}
+
+        /* MONOCHROME COLORS */
+
+body.monochrome {
+    background-color: #888;
+    color: #eee;
+}
+
+.monochrome a {
+    color: #eee;
+}
+
+.monochrome .on {
+    background-color: #444;
+    border-color: #222;
+}
+
+.monochrome .off {
+    background-color: #eee;
+    border-color: #bbb;
+}
+
+.monochrome .utils {
+    background-color: #bbb;
+}
+
+.monochrome .reset {
+    background-color: #444;
+    border-color: #222;
+}
+
