@@ -9,9 +9,14 @@
 </head>
 
 
-<body>
+<body class="monochrome">
 
 <div id="game">
+    
+    <div id="intro">
+        <h1>Nine Squares</h1>
+        <p>A nine button puzzle game.</p>
+    </div>    
     
     <div class="game-grid">
         <div class="game-row">
@@ -35,9 +40,23 @@
         <div class="reset" onclick="randomizeButtons()">Reset</div>
     </div>
     
+    <div class="colorchoice">
+        <span>Color choice:</span>
+        <div id="night" onclick="makeMidnight()"></div>
+        <div id="day" onclick="makeDaylight()"></div> 
+        <div id="chalk" onclick="makePastel()"></div>
+        <div id="bw" onclick="makeMonochrome()"></div>
+    </div>
+    
+    <div class="about">
+        <p><b>Instructions:</b> Click a button to change its color.
+        Try to get all the buttons to be <span id="wincolor">black</span>.</p>
+        <p><a href="https://github.com/alfalfascout/NineSquares">NineSquares on Git</a></p>
+    </div>
 </div>
 
 <script type="text/javascript" src="game.js"></script>
+<script type="text/javascript" src="colors.js"></script>
 
 </body>
 
