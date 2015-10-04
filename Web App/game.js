@@ -10,7 +10,7 @@ function randomAffects() {
         var randomizer = (Math.random() * (3 - 0) + 0)
         if (randomizer >= 2) {
             affectsArray.push(j);
-            if (j == i) {
+            if (j === i) {
                 affectsSelf = true;
             }
         }
@@ -25,18 +25,18 @@ function randomizeButtons() {
         Randomly decide whether each button is off or on. */
     var msg = document.getElementById("message");
     msg.textContent = " ";
-    
+
     for (i = 0; i < 9; i++) {
-        
+
         affectsSelf = false;
         buttons[i] = randomAffects();
-        if (affectsSelf == false) {
+        if (affectsSelf === false) {
             buttons[i].push(i);
         }
-        
+
         var btx = "b" + i;
         var btn = document.getElementById(btx);
-                
+
         var randomizer = (Math.random() * (3 - 1) + 1)
         if (randomizer > 2) {
             btn.setAttribute("class", "button on");
@@ -51,7 +51,7 @@ function turnButton(n) {
     /* Turns the button on if it's off, and vice versa. */
     var btx = "b" + n;
     var btn = document.getElementById(btx);
-    if (btn.getAttribute("class") == "button off") {
+    if (btn.getAttribute("class") === "button off") {
         btn.setAttribute("class", "button on");
     }
     else {
@@ -61,11 +61,11 @@ function turnButton(n) {
 
 function checkWin() {
     /* If all the buttons are 'on', then the player wins. */
-    var won = true; 
+    var won = true;
     for (var j = 0; j < 9; j++) {
         var btx = "b" + j;
         var btn = document.getElementById(btx);
-        if (btn.getAttribute("class") == "button off") {
+        if (btn.getAttribute("class") === "button off") {
             won = false;
         }
     }
