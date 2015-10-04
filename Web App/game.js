@@ -10,7 +10,7 @@ function randomAffects() {
         var randomizer = (Math.random() * (3 - 0) + 0)
         if (randomizer >= 2) {
             affectsArray.push(j);
-            if (j == i) {
+            if (j === i) {
                 affectsSelf = true;
             }
         }
@@ -30,7 +30,7 @@ function randomizeButtons() {
         
         affectsSelf = false;
         buttons[i] = randomAffects();
-        if (affectsSelf == false) {
+        if (affectsSelf === false) {
             buttons[i].push(i);
         }
         
@@ -51,7 +51,7 @@ function turnButton(n) {
     /* Turns the button on if it's off, and vice versa. */
     var btx = "b" + n;
     var btn = document.getElementById(btx);
-    if (btn.getAttribute("class") == "button off") {
+    if (btn.getAttribute("class") === "button off") {
         btn.setAttribute("class", "button on");
     }
     else {
@@ -65,7 +65,7 @@ function checkWin() {
     for (var j = 0; j < 9; j++) {
         var btx = "b" + j;
         var btn = document.getElementById(btx);
-        if (btn.getAttribute("class") == "button off") {
+        if (btn.getAttribute("class") === "button off") {
             won = false;
         }
     }
