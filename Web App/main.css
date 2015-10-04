@@ -98,7 +98,6 @@ h1 {
 }
 
 .colorchoice {
-    width: 300px;
     line-height: 24px;
     margin: 20px auto;
     text-align: center;
@@ -128,6 +127,24 @@ h1 {
 }
 #bw {
     background-color: #ccc;
+}
+#purple {
+    background-color: #332A3C;
+}
+#pink {
+    background-color: #FFACDA;
+}
+#yellow {
+    background-color: #FFCD5E;
+}
+#blue {
+    background-color: #8EAEC3;
+}
+#green {
+    background-color: #18AB47;
+}
+#lightyellow {
+    background-color: #FFD273;
 }
 
 
@@ -251,3 +268,182 @@ body.monochrome {
     border-color: #222;
 }
 
+    /* REDPURPLE COLORS */
+
+body.redpurple {
+    background-color: #AFBCC3;
+    color: #CF0404;
+}
+
+.redpurple a {
+    color: #CF0404;
+}
+
+.redpurple .on {
+    background-color: #332A3C;
+    border-color: #040009;
+}
+
+.redpurple .off {
+    background-color: #CF0404;
+    border-color: #630000;
+}
+
+.redpurple .utils {
+    background-color: #630000;
+}
+
+.redpurple .reset {
+    background-color: #332A3C;
+    border-color: #040009;
+}
+
+    /* PURPLEPINK COLORS */
+
+body.purplepink {
+    background-color: #E0D3FF;
+    color: #A164FF;
+}
+
+.purplepink a {
+    color: #A164FF;
+}
+
+.purplepink .on {
+    background-color: #FFACDA;
+    border-color: #ED5493;
+}
+
+.purplepink .off {
+    background-color: #A164FF;
+    border-color: #6527C6;
+}
+
+.purplepink .utils {
+    background-color: #6527C6;
+}
+
+.purplepink .reset {
+    background-color: #FFACDA;
+    border-color: #ED5493;
+}
+
+    /* PURPLEYELLOW COLORS */
+
+body.purpleyellow {
+    background-color: #2D0B4B;
+    color: #BC5DF0;
+}
+
+.purpleyellow a {
+    color: #BC5DF0;
+}
+
+.purpleyellow .on {
+    background-color: #FFCD5E;
+    border-color: #FF8B19;
+}
+
+.purpleyellow .off {
+    background-color: #BC5DF0;
+    border-color: #6400A8;
+}
+
+.purpleyellow .utils {
+    background-color: #6400A8;
+}
+
+.purpleyellow .reset {
+    background-color: #FFCD5E;
+    border-color: #FF8B19;
+}
+
+    /* YELLOWBLUE COLORS */
+
+body.yellowblue {
+    background-color: #EFF3E1;
+    color: #FFC422;
+}
+
+.yellowblue a {
+    color: #FFC422;
+}
+
+.yellowblue .on {
+    background-color: #8EAEC3;
+    border-color: #476E8A;
+}
+
+.yellowblue .off {
+    background-color: #FFC422;
+    border-color: #E77602;
+}
+
+.yellowblue .utils {
+    background-color: #E77602;
+}
+
+.yellowblue .reset {
+    background-color: #8EAEC3;
+    border-color: #476E8A;
+}
+
+    /* LIGHTGREENGREEN COLORS */
+
+body.lightgreengreen {
+    background-color: #85C2ED;
+    color: #C0FF9A;
+}
+
+.lightgreengreen a {
+    color: #C0FF9A;
+}
+
+.lightgreengreen .on {
+    background-color: #18AB47;
+    border-color: #00603E;
+}
+
+.lightgreengreen .off {
+    background-color: #C0FF9A;
+    border-color: #72B747;
+}
+
+.lightgreengreen .utils {
+    background-color: #72B747;
+}
+
+.lightgreengreen .reset {
+    background-color: #18AB47;
+    border-color: #00603E;
+}
+
+    /* WHITELIGHTYELLOW COLORS */
+
+body.whitelightyellow {
+    background-color: #2B2D3F;
+    color: #FFFCE8;
+}
+
+.whitelightyellow a {
+    color: #FFFCE8;
+}
+
+.whitelightyellow .on {
+    background-color: #FFD273;
+    border-color: #F08014;
+}
+
+.whitelightyellow .off {
+    background-color: #FFFCE8;
+    border-color: #FFD073;
+}
+
+.whitelightyellow .utils {
+    background-color: #FFD073;
+}
+
+.whitelightyellow .reset {
+    background-color: #FFD273;
+    border-color: #F08014;
+}
