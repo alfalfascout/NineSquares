@@ -23,9 +23,12 @@ function turnAffects(bvar) {
 
 function pressButton(bvar) {
     /* Turn all the buttons a given button affects.
-        Then check to see if that turn won the game. */
+        If that turn won the game, tell the player. */
     turnAffects(bvar);
-    checkWin();
+    if (checkWin()) {
+        var msg = document.getElementById("message");
+        msg.textContent = "You won!";
+    }
 }
 
 function randomAffects() {
@@ -48,7 +51,8 @@ function randomizeButtons() {
     /* Erase any win message.
         Randomize what each button affects.
         Make sure each button affects itself.
-        Randomly decide whether buttons are off or on. */
+        Randomly decide whether buttons are off or on,
+        By mashing buttons starting from a win state. */
     var msg = document.getElementById("message");
     msg.textContent = " ";
 
@@ -60,8 +64,18 @@ function randomizeButtons() {
         }
     }
 
+    for (var j = 0; j < 9; j++) {
+        var btx = "b" + j;
+        var btn = document.getElementById(btx);
+        btn.setAttribute("class", "button on");
+    }
+
     var randomizer = (Math.random() * (20 - 10) + 10);
     for (var j = 0; j < randomizer; j++) {
+        var randomButton = parseInt(Math.random() * (8 - 0) + 0);
+        turnAffects(buttons[randomButton]);
+    }
+    if (checkWin()) {
         var randomButton = parseInt(Math.random() * (8 - 0) + 0);
         turnAffects(buttons[randomButton]);
     }
@@ -78,10 +92,7 @@ function checkWin() {
             won = false;
         }
     }
-    if (won) {
-        var msg = document.getElementById("message");
-        msg.textContent = "You won!";
-    }
+    return won;
 }
 
 randomizeButtons();

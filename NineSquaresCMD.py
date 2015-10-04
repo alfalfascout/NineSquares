@@ -23,11 +23,6 @@ class Button(object):
                 self.affects[i] = False
         self.affects[self.id] = True
 
-    def randomStates(self):
-        """ Randomly turns buttons on and off. """
-        for i in range(randint(1,4)):
-            buttons[randint(0,8)].activate
-
     def activate(self):
         """ Turns the button on/off and
             turns the affected buttons on/off """
@@ -58,7 +53,16 @@ def newGame(buttons):
     """ Randomizes all the buttons """
     for i in range(9):
         buttons[i].randomAffects()
-        buttons[i].randomStates()
+        buttons[i].active = True
+    randomStates(buttons)
+
+def randomStates(buttons):
+    """ Randomly turns buttons on and off.
+        If this generates a win state, press one button. """
+    for i in range(randint(10,20)):
+        buttons[randint(0,8)].activate()
+    if checkWin(buttons):
+        buttons[randint(0,8)].activate()
 
 def drawBoard(buttons):
     """ Draws the board to the command line, like so:
@@ -92,9 +96,6 @@ def checkWin(buttons):
     for i in range(9):
         result = result and buttons[i].active
     if result:
-        print "\n\n"
-        drawBoard(buttons)
-        print "You won!"
         return True
     else:
         return False
@@ -110,7 +111,7 @@ def playGame(buttons):
     demoBoard()
     print "Every \"button\" you press could activate others!"
     print "The goal is to turn every button into an O."
-    print "Let's start!"
+    print "\nLet's start!"
 
     """ Main loop """
     while not won:
@@ -130,6 +131,11 @@ def playGame(buttons):
 
         won = checkWin(buttons)
         print "\n"
+
+        if won:
+            print "\n\n"
+            drawBoard(buttons)
+            print "You won!"
 
 playLooper = "Y"
 
