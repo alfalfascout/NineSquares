@@ -1,21 +1,13 @@
 # NineSquares
-A nine button game where the goal is to activate all the buttons, but each button may also toggle others.
+A nine button puzzle game where the goal is to activate all the buttons. Each button may also toggle the other buttons.
 
 What's already done:
 
 - The command line script runs as intended.
-- There's a simple javascript/html web app.
+- There's a simple javascript/html web app, live here: http://alfalfascout.com/ninesquares/
 
-What needs doing:
+What could be done:
 
-A Mac GUI
-- Ideally, do this first.
-- The interface should have a "board" of 9 buttons to play the game, a text field to tell the player if they won, and a button to reset the game board.
-
-A Windows GUI
-- Ideally, do this second. 
-
-What else could be done:
-
-A Linux GUI
-- To do when a linux os computer is available
+- A Native Mac GUI (Objective-C? PyObjC?)
+- A Native Windows GUI (C# over Python? C++ rewrite?)
+- A Native Linux GUI (Python, probably)

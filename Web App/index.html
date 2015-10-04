@@ -12,35 +12,35 @@
 <body class="monochrome">
 
 <div id="game">
-    
+
     <div id="intro">
         <h1>Nine Squares</h1>
         <p>A nine button puzzle game.</p>
-    </div>    
-    
+    </div>
+
     <div class="game-grid">
         <div class="game-row">
-            <div class="button" id="b0" onclick="turnAffects(buttons[0])"> 
+            <div class="button off" id="b0" onclick="pressButton(buttons[0])">
             </div>
-            <div class="button" id="b1" onclick="turnAffects(buttons[1])"> 
+            <div class="button off" id="b1" onclick="pressButton(buttons[1])">
             </div>
-            <div class="button" id="b2" onclick="turnAffects(buttons[2])"> 
-            </div>
-        </div>
-        <div class="game-row">
-            <div class="button" id="b3" onclick="turnAffects(buttons[3])"> 
-            </div>
-            <div class="button" id="b4" onclick="turnAffects(buttons[4])"> 
-            </div>
-            <div class="button" id="b5" onclick="turnAffects(buttons[5])"> 
+            <div class="button off" id="b2" onclick="pressButton(buttons[2])">
             </div>
         </div>
         <div class="game-row">
-            <div class="button" id="b6" onclick="turnAffects(buttons[6])"> 
+            <div class="button off" id="b3" onclick="pressButton(buttons[3])">
             </div>
-            <div class="button" id="b7" onclick="turnAffects(buttons[7])"> 
+            <div class="button off" id="b4" onclick="pressButton(buttons[4])">
             </div>
-            <div class="button" id="b8" onclick="turnAffects(buttons[8])"> 
+            <div class="button off" id="b5" onclick="pressButton(buttons[5])">
+            </div>
+        </div>
+        <div class="game-row">
+            <div class="button off" id="b6" onclick="pressButton(buttons[6])">
+            </div>
+            <div class="button off" id="b7" onclick="pressButton(buttons[7])">
+            </div>
+            <div class="button off" id="b8" onclick="pressButton(buttons[8])"> 
             </div>
         </div>
     </div>
@@ -48,15 +48,15 @@
         <div id="message">&nbsp;</div>
         <div class="reset" onclick="randomizeButtons()">Reset</div>
     </div>
-    
+
     <div class="colorchoice">
         <span>Color choice:</span>
         <div id="night" onclick="makeMidnight()"></div>
-        <div id="day" onclick="makeDaylight()"></div> 
+        <div id="day" onclick="makeDaylight()"></div>
         <div id="chalk" onclick="makePastel()"></div>
         <div id="bw" onclick="makeMonochrome()"></div>
     </div>
-    
+
     <div class="about">
         <p><b>Instructions:</b> Click a button to change its color.
         Try to get all the buttons to be <span id="wincolor">black</span>.</p>
@@ -69,4 +69,4 @@
 
 </body>
 
-</html> 
+</html>
