@@ -49,10 +49,14 @@ b8 = Button(8)
 """ Create an array to contain the grid """
 buttons = [b0,b1,b2,b3,b4,b5,b6,b7,b8]
 
-def newGame(buttons):
+def newGame(buttons, mode):
     """ Randomizes all the buttons """
+    if mode == "r":
+        for i in range(9):
+            buttons[i].randomAffects()
+    else:
+        adjacentAffects()
     for i in range(9):
-        buttons[i].randomAffects()
         buttons[i].active = True
     randomStates(buttons)
 
@@ -63,6 +67,28 @@ def randomStates(buttons):
         buttons[randint(0,8)].activate()
     if checkWin(buttons):
         buttons[randint(0,8)].activate()
+
+def adjacentAffects():
+    """ Makes buttons affect only the ones next to them.
+        Is there a faster way of writing this? """
+    buttons[0].affects = [True, True, False,
+        True, False, False, False, False, False]
+    buttons[1].affects = [True, True, True,
+        False, True, False, False, False, False]
+    buttons[2].affects = [False, True, True,
+        False, False, True, False, False, False]
+    buttons[3].affects = [True, False, False,
+        True, True, False, True, False, False]
+    buttons[4].affects = [False, True, False,
+        True, True, True, False, True, False]
+    buttons[5].affects = [False, False, True,
+        False, True, True, False, False, True]
+    buttons[6].affects = [False, False, False,
+        True, False, False, True, True, False]
+    buttons[7].affects = [False, False, False,
+        False, True, False, True, True, True]
+    buttons[8].affects = [False, False, False,
+        False, False, True, False, True, False]
 
 def drawBoard(buttons):
     """ Draws the board to the command line, like so:
@@ -102,15 +128,24 @@ def checkWin(buttons):
 
 def playGame(buttons):
     """ Play the game on the command line. """
-    newGame(buttons)
-    won = False
-    press = 0
 
     print "\nWelcome to Nine Squares!"
     print "The board looks like this:"
     demoBoard()
     print "Every \"button\" you press could activate others!"
     print "The goal is to turn every button into an O."
+
+    mode = raw_input("Would you like to play " +
+            "adjacent or random mode? (A/R) ")
+    if mode == "a" or mode == "A":
+        print "Adjacent mode it is."
+    else:
+        mode = "r"
+        print "Random mode it is."
+
+    newGame(buttons, mode)
+    won = False
+    press = 0
     print "\nLet's start!"
 
     """ Main loop """
@@ -133,7 +168,6 @@ def playGame(buttons):
         print "\n"
 
         if won:
-            print "\n\n"
             drawBoard(buttons)
             print "You won!"
 

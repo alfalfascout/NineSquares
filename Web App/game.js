@@ -47,21 +47,52 @@ function randomAffects() {
     return affectsArray;
 }
 
-function randomizeButtons() {
+function adjacentAffects() {
+    /* This should make each button only affect the ones
+        next to it on the board. */
+    buttons[0] = [0,1,3];
+    buttons[1] = [0,1,2,4];
+    buttons[2] = [1,2,5];
+    buttons[3] = [0,3,4,6];
+    buttons[4] = [1,3,4,5,7];
+    buttons[5] = [2,4,5,8];
+    buttons[6] = [3,6,7];
+    buttons[7] = [4,6,7,8];
+    buttons[8] = [5,7,8];
+}
+
+function checkWin() {
+    /* If all the buttons are 'on', then the player wins. */
+    var won = true;
+    for (var j = 0; j < 9; j++) {
+        var btx = "b" + j;
+        var btn = document.getElementById(btx);
+        if (btn.getAttribute("class") === "button off") {
+            won = false;
+        }
+    }
+    return won;
+}
+
+function newGame(mode) {
     /* Erase any win message.
-        Randomize what each button affects.
-        Make sure each button affects itself.
+        Reset button affects based on game mode.
         Randomly decide whether buttons are off or on,
         By mashing buttons starting from a win state. */
     var msg = document.getElementById("message");
     msg.textContent = " ";
 
-    for (i = 0; i < 9; i++) {
-        affectsSelf = false;
-        buttons[i] = randomAffects();
-        if (affectsSelf === false) {
-            buttons[i].push(i);
+    if (mode === "random") {
+        for (i = 0; i < 9; i++) {
+            affectsSelf = false;
+            buttons[i] = randomAffects();
+            if (affectsSelf === false) {
+                buttons[i].push(i);
+            }
         }
+    }
+    else if (mode === "adjacent") {
+        adjacentAffects()
     }
 
     for (var j = 0; j < 9; j++) {
@@ -82,17 +113,4 @@ function randomizeButtons() {
 
 }
 
-function checkWin() {
-    /* If all the buttons are 'on', then the player wins. */
-    var won = true;
-    for (var j = 0; j < 9; j++) {
-        var btx = "b" + j;
-        var btn = document.getElementById(btx);
-        if (btn.getAttribute("class") === "button off") {
-            won = false;
-        }
-    }
-    return won;
-}
-
-randomizeButtons();
+newGame("random");

@@ -7,12 +7,10 @@ body {
     margin: 50px 0px 100px;
 }
 
-#intro, .utils {
+#intro {
     width: 350px;
-    min-height: 50px;
     padding: 10px;
     margin: 10px auto;
-    border-radius: 10px;
     text-align: center;
 }
 
@@ -73,28 +71,45 @@ h1 {
     border-color: #a6a;
 }
 
+.utils {
+    width: 380px;
+    min-height: 50px;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 10px;
+    text-align: right;
+}
+
 #message {
     float: left;
-    width: 150px;
+    width: 100px;
+    padding-left: 10px;
     line-height: 50px;
-    text-align: center;
+    text-align: left;
+}
+
+.utils span {
+    line-height: 50px;
 }
 
 .reset {
-    float: right;
-    width: 100px;
-    line-height: 36px;
-    margin: 7px 10px;
-    border-width: 0px 0px 2px;
+    display: inline-block;
+    padding: 6px 8px;
+    margin: 7px 0px;
+    border-width: 1px;
     border-color: #000;
     border-style: solid;
     border-radius: 4px;
     text-align: center;
 }
-
-.reset:active {
-    border-width: 0px 0px 1px;
-    margin-top: 10px;
+.reset:nth-last-of-type(2) {
+    border-right-width: 0px;
+    border-radius: 4px 0px 0px 4px;
+    margin-left: 4px;
+}
+.reset:last-of-type {
+    border-radius: 0px 4px 4px 0px;
+    margin-right: 8px;
 }
 
 .colorchoice {
@@ -250,4 +265,3 @@ body.monochrome {
     background-color: #444;
     border-color: #222;
 }
-
