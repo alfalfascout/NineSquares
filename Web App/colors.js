@@ -17,27 +17,27 @@ function makeMonochrome() {
 bod.setAttribute("class", "monochrome");
 par.textContent = "black";
 }
-function makeRedPurple() {
-bod.setAttribute("class", "redpurple");
-par.textContent = "purple";
+function makeCheckers() {
+bod.setAttribute("class", "checkers");
+par.textContent = "red";
 }
-function makePurplePink() {
-bod.setAttribute("class", "purplepink");
+function makeGentlePinkle() {
+bod.setAttribute("class", "gentlepinkle");
 par.textContent = "pink";
 }
-function makePurpleYellow() {
-bod.setAttribute("class", "purpleyellow");
-par.textContent = "yellow";
+function makePurpleDragon() {
+bod.setAttribute("class", "purpledragon");
+par.textContent = "purple";
 }
-function makeYellowBlue() {
-bod.setAttribute("class", "yellowblue");
+function makeSilverGold() {
+bod.setAttribute("class", "silvergold");
 par.textContent = "blue";
 }
-function makeLightgreenGreen() {
-bod.setAttribute("class", "lightgreengreen");
-par.textContent = "darkgreen";
+function makeHappySapling() {
+bod.setAttribute("class", "happysapling");
+par.textContent = "dark green";
 }
-function makeWhiteLightyellow() {
-bod.setAttribute("class", "whitelightyellow");
-par.textContent = "yellow";
+function makeWhiteGold() {
+bod.setAttribute("class", "whitegold");
+par.textContent = "white";
 }
