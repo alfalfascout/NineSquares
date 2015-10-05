@@ -146,14 +146,20 @@ def playGame(buttons):
     newGame(buttons, mode)
     won = False
     press = 0
+    turns = 1
     print "\nLet's start!"
 
     """ Main loop """
     while not won:
         drawBoard(buttons)
 
+        if turns == 1:
+            message = "9 to Quit. Press 0 through 8? "
+        else:
+            message = "Turn " + str(turns) + ". Press 0-8? "
+
         try:
-            press = int(raw_input("9 to Quit. Press 0 through 8? "))
+            press = int(raw_input(message))
         except ValueError:
             press = -1
 
@@ -170,6 +176,8 @@ def playGame(buttons):
         if won:
             drawBoard(buttons)
             print "You won!"
+        else:
+            turns += 1
 
 playLooper = "Y"
 

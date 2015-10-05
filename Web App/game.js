@@ -1,6 +1,7 @@
 var buttons = [];
 var i = 0;
 affectsSelf = false;
+var turns = 1;
 
 function turnButton(n) {
     /* Turns the button on if it's off, and vice versa. */
@@ -28,6 +29,11 @@ function pressButton(bvar) {
     if (checkWin()) {
         var msg = document.getElementById("message");
         msg.textContent = "You won!";
+    }
+    else {
+        turns += 1;
+        var msg = document.getElementById("message");
+        msg.textContent = "Turn " + turns;
     }
 }
 
@@ -79,8 +85,9 @@ function newGame(mode) {
         Reset button affects based on game mode.
         Randomly decide whether buttons are off or on,
         By mashing buttons starting from a win state. */
+    turns = 1;
     var msg = document.getElementById("message");
-    msg.textContent = " ";
+    msg.textContent = "Turn " + turns;
 
     if (mode === "random") {
         for (i = 0; i < 9; i++) {

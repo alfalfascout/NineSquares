@@ -82,8 +82,8 @@ h1 {
 
 #message {
     float: left;
-    width: 100px;
-    padding-left: 10px;
+    width: 80px;
+    padding-left: 20px;
     line-height: 50px;
     text-align: left;
 }
