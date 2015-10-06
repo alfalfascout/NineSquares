@@ -17,3 +17,27 @@ function makeMonochrome() {
 bod.setAttribute("class", "monochrome");
 par.textContent = "black";
 }
+function makeCheckers() {
+bod.setAttribute("class", "checkers");
+par.textContent = "red";
+}
+function makeGentlePinkle() {
+bod.setAttribute("class", "gentlepinkle");
+par.textContent = "pink";
+}
+function makePurpleDragon() {
+bod.setAttribute("class", "purpledragon");
+par.textContent = "purple";
+}
+function makeSilverGold() {
+bod.setAttribute("class", "silvergold");
+par.textContent = "blue";
+}
+function makeHappySapling() {
+bod.setAttribute("class", "happysapling");
+par.textContent = "dark green";
+}
+function makeWhiteGold() {
+bod.setAttribute("class", "whitegold");
+par.textContent = "white";
+}
