@@ -5,6 +5,7 @@
 <title>Nine Squares Game</title>
 
 <link rel="stylesheet" type="text/css" href="main.css">
+<link rel="stylesheet" type="text/css" href="colors.css">
 
 </head>
 
@@ -47,7 +48,7 @@
         </div>
     </div>
     <div class="utils">
-        <div id="message">&nbsp;</div>
+        <span id="message">&nbsp;</span>
         <span>New:</span>
         <div class="reset" onclick="newGame('adjacent')">Adjacent
         </div><div class="reset" onclick="newGame('random')">Random</div>
@@ -55,47 +56,26 @@
 
     <div class="colorchoice">
         <span>Color choice:</span>
-
-        <span onclick="makeMidnight()">
-            <div id="midnightLeft"></div>
-            <div id="midnightRight"></div>
-        </span>
-        <span onclick="makeDaylight()">
-            <div id="daylightLeft"></div>
-            <div id="daylightRight"></div>
-        </span>
-        <span onclick="makePastel()">
-            <div id="pastelLeft"></div>
-            <div id="pastelRight"></div>
-        </span>
-        <span onclick="makeMonochrome()">
-            <div id="monochromeLeft"></div>
-            <div id="monochromeRight"></div>
-        </span>
-        <span onclick="makeCheckers()">
-            <div id="checkersLeft"></div>
-            <div id="checkersRight"></div>
-        </span>
-        <span onclick="makeGentlePinkle()">
-            <div id="gentlepinkleLeft"></div>
-            <div id="gentlepinkleRight"></div>
-        </span>
-        <span onclick="makePurpleDragon()">
-            <div id="purpledragonLeft"></div>
-            <div id="purpledragonRight"></div>
-        </span>
-        <span onclick="makeSilverGold()">
-            <div id="silvergoldLeft"></div>
-            <div id="silvergoldRight"></div>
-        </span>
-        <span onclick="makeHappySapling()">
-            <div id="happysaplingLeft"></div>
-            <div id="happysaplingRight"></div>
-        </span>
-        <span onclick="makeWhiteGold()">
-            <div id="whitegoldLeft"></div>
-            <div id="whitegoldRight"></div>
-        </span>
+        <div id="midnight"
+            onclick="makeColor('midnight','teal')"></div>
+        <div id="daylight"
+            onclick="makeColor('daylight','orange')"></div>
+        <div id="pastel"
+            onclick="makeColor('pastel','pink')"></div>
+        <div id="monochrome"
+            onclick="makeColor('monochrome','black')"></div>
+        <div id="checkers"
+            onclick="makeColor('checkers','red')"></div>
+        <div id="gentlepinkle"
+            onclick="makeColor('gentlepinkle','pink')"></div>
+        <div id="purpledragon"
+            onclick="makeColor('purpledragon','purple')"></div>
+        <div id="silvergold"
+            onclick="makeColor('silvergold','silver')"></div>
+        <div id="happysapling"
+            onclick="makeColor('happysapling','dark green')"></div>
+        <div id="whitegold"
+            onclick="makeColor('whitegold','white')"></div>
     </div>
 
     <div class="about">
@@ -105,8 +85,8 @@
     </div>
 </div>
 
-<script type="text/javascript" src="game.js"></script>
 <script type="text/javascript" src="colors.js"></script>
+<script type="text/javascript" src="game.js"></script>
 
 </body>
 
