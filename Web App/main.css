@@ -7,6 +7,15 @@ body {
     margin: 50px 0px 100px;
 }
 
+.game-grid, .color-choice, .reset {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 #intro {
     width: 350px;
     padding: 10px;
@@ -23,12 +32,6 @@ h1 {
     height: 460px;
     margin: auto;
     padding: 20px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .game-row {

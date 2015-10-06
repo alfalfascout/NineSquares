@@ -28,7 +28,7 @@ function pressButton(bvar) {
     turnAffects(bvar);
     if (checkWin()) {
         var msg = document.getElementById("message");
-        msg.textContent = "You won!";
+        msg.textContent = "Turn " + turns + ": You won!";
     }
     else {
         turns += 1;
