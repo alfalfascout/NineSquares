@@ -28,7 +28,7 @@ h1 {
 }
 
 .game-grid {
-    width: 430px;
+    width: 436px;
     height: 460px;
     margin: auto;
     padding: 20px;
@@ -75,7 +75,7 @@ h1 {
 }
 
 .utils {
-    width: 380px;
+    width: 416px;
     min-height: 50px;
     padding: 10px;
     margin: 10px auto;
@@ -85,8 +85,8 @@ h1 {
 
 #message {
     float: left;
-    width: 80px;
-    padding-left: 20px;
+    width: 174px;
+    padding-left: 16px;
     text-align: left;
 }
 
@@ -116,6 +116,6 @@ h1 {
 }
 
 .about {
-    width: 450px;
+    width: 436px;
     margin: 50px auto;
 }
