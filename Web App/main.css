@@ -3,10 +3,6 @@ body {
     font-family: Geneva, Arial, sans-serif;
 }
 
-#game {
-    margin: 50px 0px 100px;
-}
-
 .game-grid, .color-choice, .reset {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -16,10 +12,13 @@ body {
     user-select: none;
 }
 
+#game {
+    margin: 50px 0px 100px;
+}
+
 #intro {
-    width: 350px;
-    padding: 10px;
-    margin: 10px auto;
+    width: 400px;
+    margin: 0px auto;
     text-align: center;
 }
 
@@ -30,7 +29,7 @@ h1 {
 .game-grid {
     width: 436px;
     height: 460px;
-    margin: auto;
+    margin: 0px auto;
     padding: 20px;
 }
 
@@ -118,4 +117,13 @@ h1 {
 .about {
     width: 436px;
     margin: 50px auto;
+}
+
+.reset.inviso {
+    display: none;
+}
+.reset.roundy {
+    border-radius: 4px;
+    border-width: 1px;
+    margin-right: 10px;
 }
