@@ -119,6 +119,7 @@ function newGame(mode) {
         By mashing buttons starting from a win state. */
     turns = 1;
     msg.textContent = "Turn " + turns;
+    localStorage.setItem("modepref", mode);
 
     if (mode === "random") {
         for (i = 0; i < 9; i++) {
@@ -171,12 +172,18 @@ function newGame(mode) {
     }
 }
 
+/* If the user has never played before, start the tutorial.
+    If the user has played before, try to get their preferred game mode.
+    If that fails, default to adjacent mode. */
 if (!localStorage.getItem("tutorial")) {
     resets[0].setAttribute("class", "reset roundy");
     resets[1].setAttribute("class", "reset inviso");
     tutorial = 1;
     newGame("tutorial");
 }
-else {
+else if (!localStorage.getItem("modepref")) {
     newGame("adjacent");
+}
+else {
+    newGame(localStorage.getItem("modepref"));
 }
