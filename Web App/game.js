@@ -1,5 +1,6 @@
 var msg = document.getElementById("message");
 var tut = document.getElementById("tut");
+var tutskip = document.getElementById("tutskip");
 var resets = document.getElementsByClassName("reset");
 var buttons = [];
 var i = 0;
@@ -98,6 +99,7 @@ function checkWin() {
         tutorial += 1;
         tut.textContent = "Try random mode, when you're ready." +
             " You can change the color scheme at any time.";
+        tutskip.textContent = "Reset tutorial?";
         resets[0].setAttribute("class", "reset");
         resets[1].setAttribute("class", "reset");
         localStorage.setItem("tutorial", "complete");
@@ -172,12 +174,23 @@ function newGame(mode) {
     }
 }
 
+function setTutorial() {
+    if (!localStorage.getItem("tutorial")) {
+        localStorage.setItem("tutorial", "complete");
+    }
+    else {
+        localStorage.removeItem("tutorial");
+    }
+    location.reload(true);
+}
+
 /* If the user has never played before, start the tutorial.
     If the user has played before, try to get their preferred game mode.
     If that fails, default to adjacent mode. */
 if (!localStorage.getItem("tutorial")) {
     resets[0].setAttribute("class", "reset roundy");
     resets[1].setAttribute("class", "reset inviso");
+    tutskip.textContent = "Skip tutorial?";
     tutorial = 1;
     newGame("tutorial");
 }
