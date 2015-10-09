@@ -83,35 +83,40 @@ h1 {
 }
 
 #message {
-    float: left;
-    width: 174px;
+    width: 182px;
     padding-left: 16px;
     text-align: left;
 }
 
 .utils span {
+    float: left;
     line-height: 50px;
 }
 
 .reset {
-    display: inline-block;
+    display: block;
+    float: left;
     padding: 6px 8px;
     margin: 7px 0px;
-    border-width: 1px;
+    border-width: 0px 1px 2px;
     border-color: #000;
     border-style: solid;
     border-radius: 4px;
     text-align: center;
 }
 
+.reset:active {
+    margin: 8px 0px 6px;
+    border-width: 0px 1px 1px;
+}
+
 .reset:nth-last-of-type(2) {
     border-right-width: 0px;
     border-radius: 4px 0px 0px 4px;
-    margin-left: 4px;
+    margin-left: 6px;
 }
 .reset:last-of-type {
     border-radius: 0px 4px 4px 0px;
-    margin-right: 8px;
 }
 
 .about {
