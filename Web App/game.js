@@ -95,21 +95,9 @@ function checkWin() {
             won = false;
         }
     }
-    if (won && tutorial === 3) {
-        tutorial += 1;
-        tut.textContent = "Try random mode, when you're ready." +
-            " You can change the color scheme at any time.";
-        tutskip.textContent = "Reset tutorial?";
-        resets[0].setAttribute("class", "reset");
-        resets[1].setAttribute("class", "reset");
-        localStorage.setItem("tutorial", "complete");
-    }
-    else if (won && tutorial > 0 && tutorial < 3) {
-        tutorial += 1;
-    }
-    else if (won && tutorial > 3) {
-        tutorial = 0;
-        tut.textContent = "A nine button puzzle game.";
+    if (won && tutorial === 1) {
+        tut.textContent = "You can press the Adjacent button below" +
+            " to start a new puzzle!";
     }
     return won;
 }
@@ -119,6 +107,24 @@ function newGame(mode) {
         Reset button affects based on game mode.
         Randomly decide whether buttons are off or on,
         By mashing buttons starting from a win state. */
+
+    if (checkWin() && tutorial === 3) {
+        tutorial += 1;
+        tut.textContent = "Try random mode, when you're ready." +
+            " You can change the color scheme at any time.";
+        tutskip.textContent = "Reset tutorial?";
+        resets[0].setAttribute("class", "reset");
+        resets[1].setAttribute("class", "reset");
+        localStorage.setItem("tutorial", "complete");
+    }
+    else if (checkWin() && tutorial > 0 && tutorial < 3) {
+        tutorial += 1;
+    }
+    else if (checkWin() && tutorial > 3) {
+        tutorial = 0;
+        tut.textContent = "A nine button puzzle game.";
+    }
+
     turns = 1;
     msg.textContent = "Turn " + turns;
     localStorage.setItem("modepref", mode);
