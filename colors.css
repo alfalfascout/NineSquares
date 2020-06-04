@@ -1,0 +1,325 @@
+.colorchoice {
+	line-height: 24px;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.colorchoice div {
+	display: inline-block;
+	height: 24px;
+	width: 12px;
+	margin: auto 2px -5px;
+	border-right: 12px solid #fff;
+	border-radius: 4px;
+}
+
+#midnight {
+	background-color: #1A525C;
+	border-right-color: #483078;
+}
+
+#daylight {
+	background-color: #fdcb33;
+	border-right-color: #9ED54C;
+}
+
+#pastel {
+	background-color: #FF99CC;
+	border-right-color: #66EE88;
+}
+
+#monochrome {
+	background-color: #444444;
+	border-right-color: #EEEEEE;
+}
+
+#checkers {
+	background-color: #CF0404;
+	border-right-color: #332A3C;
+}
+
+#gentlepinkle {
+	background-color: #FFACDA;
+	border-right-color: #A164FF;
+}
+
+#purpledragon {
+	background-color: #BC5DF0;
+	border-right-color: #FFCD5E;
+}
+
+#silvergold {
+	background-color: #8EAEC3;
+	border-right-color: #FFC422;
+}
+
+#happysapling {
+	background-color: #18AB47;
+	border-right-color: #C0FF9A;
+}
+
+#whitegold {
+	background-color: #FFFCE8;
+	border-right-color: #FFD273;
+}
+
+
+		/* MIDNIGHT COLORS */
+
+body.midnight {
+	background-color: #202024;
+	color: #ABB3B6;
+}
+
+.midnight a {
+	color: #A9B0B3;
+}
+
+.midnight .on,
+.midnight .reset {
+	background-color: #0D8185;
+	border-color: #1A525C;
+}
+
+.midnight .off {
+	background-color: #483078;
+	border-color: #301860;
+}
+
+.midnight .utils {
+	background-color: #483078;
+}
+
+		/* DAYLIGHT COLORS */
+
+body.daylight {
+	background-color: #bce8e9;
+	color: #505080;
+}
+
+.daylight a {
+	color: #505080;
+}
+
+.daylight .on,
+.daylight .reset {
+	background-color: #fdcb33;
+	border-color: #efa61a;
+}
+
+.daylight .off {
+	background-color: #9ED54C;
+	border-color: #59A80F;
+}
+
+.daylight .utils {
+	background-color: #9ED54C;
+}
+
+		/* PASTEL COLORS */
+
+body.pastel {
+	background-color: #ee9;
+	color: #8b3d68;
+}
+
+.pastel a {
+	color: #8b3d68;
+}
+
+.pastel .on,
+.pastel .reset {
+	background-color: #f9c;
+	border-color: #c69;
+}
+
+.pastel .off {
+	background-color: #6e8;
+	border-color: #3a6;
+}
+
+.pastel .utils {
+	background-color: #6e8;
+}
+
+		/* MONOCHROME COLORS */
+
+body.monochrome {
+	background-color: #888;
+	color: #eee;
+}
+
+.monochrome a {
+	color: #eee;
+}
+
+.monochrome .on,
+.monochrome .reset {
+	background-color: #444;
+	border-color: #222;
+}
+
+.monochrome .off {
+	background-color: #eee;
+	border-color: #bbb;
+}
+
+.monochrome .utils {
+	background-color: #bbb;
+}
+
+	/* CHECKERS COLORS */
+
+body.checkers {
+	background-color: #AFBCC3;
+	color: #FFF;
+}
+
+.checkers a {
+	color: #332A3C;
+}
+
+.checkers .on,
+.checkers .reset {
+	background-color: #CF0404;
+	border-color: #630000;
+}
+
+.checkers .off {
+	background-color: #332A3C;
+	border-color: #040009;
+}
+
+.checkers .utils {
+	background-color: #040009;
+}
+
+	/* GENTLE PINK COLORS */
+
+body.gentlepinkle {
+	background-color: #E0D3FF;
+	color: #A164FF;
+}
+
+.gentlepinkle a {
+	color: #A164FF;
+}
+
+.gentlepinkle .on,
+.gentlepinkle .reset {
+	background-color: #FFACDA;
+	border-color: #ED5493;
+}
+
+.gentlepinkle .off {
+	background-color: #A164FF;
+	border-color: #6527C6;
+}
+
+.gentlepinkle .utils {
+	background-color: #6527C6;
+}
+
+	/* PURPLE DRAGON COLORS */
+
+body.purpledragon {
+	background-color: #2D0B4B;
+	color: #FFCD5E;
+}
+
+.purpledragon a {
+	color: #FFCD5E;
+}
+
+.purpledragon .on,
+.purpledragon .reset {
+	background-color: #BC5DF0;
+	border-color: #6400A8;
+}
+
+.purpledragon .off {
+	background-color: #FFCD5E;
+	border-color: #FF8B19;
+}
+
+.purpledragon .utils {
+	background-color: #FF8B19;
+}
+
+	/* SILVER GOLD COLORS */
+
+body.silvergold {
+	background-color: #EFF3E1;
+	color: #FFC422;
+}
+
+.silvergold a {
+	color: #FFC422;
+}
+
+.silvergold .on,
+.silvergold .reset {
+	background-color: #8EAEC3;
+	border-color: #476E8A;
+}
+
+.silvergold .off {
+	background-color: #FFC422;
+	border-color: #E77602;
+}
+
+.silvergold .utils {
+	background-color: #E77602;
+}
+
+	/* THAT'S A HAPPY SAPLING COLORS */
+
+body.happysapling {
+	background-color: #85C2ED;
+	color: #C0FF9A;
+}
+
+.happysapling a {
+	color: #C0FF9A;
+}
+
+.happysapling .on,
+.happysapling .reset {
+	background-color: #18AB47;
+	border-color: #00603E;
+}
+
+.happysapling .off {
+	background-color: #C0FF9A;
+	border-color: #72B747;
+}
+
+.happysapling .utils {
+	background-color: #72B747;
+}
+
+	/* WHITE GOLD COLORS */
+
+body.whitegold {
+	background-color: #2B2D3F;
+	color: #FFD273;
+}
+
+.whitegold a {
+	color: #FFD273;
+}
+
+.whitegold .on,
+.whitegold .reset {
+	background-color: #FFFCE8;
+	border-color: #FFD073;
+}
+
+.whitegold .off {
+	background-color: #FFD273;
+	border-color: #F08014;
+}
+
+.whitegold .utils {
+	background-color: #F08014;
+}
