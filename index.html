@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 
 <link rel="stylesheet" type="text/css" href="main.css">
-<!-- <link rel="stylesheet" type="text/css" href="colors.css"> -->
 
 </head>
 
@@ -23,31 +22,35 @@
 			enabled in your browser, the game won't work.</p></noscript>
 	</div>
 
-	<svg id="svg-grid" viewBox="0 0 1020 1100" xmlns="http://www.w3.org/2000/svg">
+	<svg id="svg-grid" viewBox="0 0 1000 1100" xmlns="http://www.w3.org/2000/svg">
 		<defs>
 			<g id="game-button">
-				<rect class="outer" width="102" height="110" rx="10" ry="10"/>
-				<rect class="inner" width="100" height="100" x="1" rx="10" ry="10"/>
+				<rect class="outer" width="102" height="110" rx="10" ry="10">
+				</rect>
+				<rect class="inner" width="100" height="100" x="1" y="0" rx="10" ry="10">
+				</rect>
 			</g>
 		</defs>
-		<g id="svg-board">
-		</g>
+		<g id="svg-board"></g>
 	</svg>
 	
-	<div class="utils">
-		<span id="message">&nbsp;</span>
-		<span>New:</span>
-		<button class="reset" onclick="newGame()">New Game
-		</button>
+	<div id="utils">
+		<div class="above-box">
+			<span id="message">&nbsp;</span>
+			<button id="options-toggle" onclick="expandUtils()">*</button>
+			<button class="reset" onclick="newGame()">New Game</button>
+		</div>
 		
-		<div class="radio-group">
+		<div class="radio-group mode">
+			<span>Game Mode</span>
 			<input type="radio" id="adjacent-mode" name="game-mode" value="1" onchange="changeMode()" checked>
 			<label for="adjacent-mode">Adjacent</label>
 			<input type="radio" id="random-mode" name="game-mode"  onchange="changeMode()" value="2">
 			<label for="random-mode">Random</label>
 		</div>
 		
-		<div class="radio-group">
+		<div class="radio-group dim">
+			<span>Width</span>
 			<input type="radio" id="width2" name="game-width" value="2" onchange="generateGameBoard()">
 			<label for="width2">2</label>
 			<input type="radio" id="width3" name="game-width" value="3" onchange="generateGameBoard()" checked>
@@ -66,7 +69,8 @@
 			<label for="width9">9</label>
 		</div>
 		
-		<div class="radio-group">
+		<div class="radio-group dim">
+			<span>Height</span>
 			<input type="radio" id="height2" name="game-height" value="2" onchange="generateGameBoard()">
 			<label for="height2">2</label>
 			<input type="radio" id="height3" name="game-height" value="3" onchange="generateGameBoard()" checked>
@@ -84,41 +88,26 @@
 			<input type="radio" id="height9" name="game-height" value="9" onchange="generateGameBoard()">
 			<label for="height9">9</label>
 		</div>
+		
+		<div class="sliders">
+			<label for="on-hue">On Hue</label>
+			<input id="on-hue" type="range" min="0" max="360" step="1" value="0" onmouseup="changeHue('on-hue')">
+			<label for="off-hue">Off Hue</label>
+			<input id="off-hue" type="range" min="0" max="360" step="1" value="220" onmouseup="changeHue('off-hue')">
+		</div>
+		
+		
+		<div class="about">
+			<p>Click a button to change its color.
+			Try to get all the buttons to be <span id="wincolor">bright</span>.</p>
+			<p><a href="https://github.com/alfalfascout/NineSquares">
+				NineSquares on GitHub</a></p>
+		</div>
 	</div>
 
-	<div class="colorchoice">
-		<span>Color choice:</span>
-		<div id="midnight"
-			onclick="makeColor('midnight','teal')"></div>
-		<div id="daylight"
-			onclick="makeColor('daylight','orange')"></div>
-		<div id="pastel"
-			onclick="makeColor('pastel','pink')"></div>
-		<div id="monochrome"
-			onclick="makeColor('monochrome','black')"></div>
-		<div id="checkers"
-			onclick="makeColor('checkers','red')"></div>
-		<div id="gentlepinkle"
-			onclick="makeColor('gentlepinkle','pink')"></div>
-		<div id="purpledragon"
-			onclick="makeColor('purpledragon','purple')"></div>
-		<div id="silvergold"
-			onclick="makeColor('silvergold','silver')"></div>
-		<div id="happysapling"
-			onclick="makeColor('happysapling','dark green')"></div>
-		<div id="whitegold"
-			onclick="makeColor('whitegold','white')"></div>
-	</div>
-
-	<div class="about">
-		<p><b>Instructions:</b> Click a button to change its color.
-		Try to get all the buttons to be <span id="wincolor">black</span>.</p>
-		<p><a href="https://github.com/alfalfascout/NineSquares">
-			NineSquares on GitHub</a></p>
-	</div>
+	
 </div>
 
-<script type="text/javascript" src="colors.js"></script>
 <script type="text/javascript" src="game.js"></script>
 
 </body>

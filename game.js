@@ -6,13 +6,34 @@ var i = 0;
 var turns = 1;
 var buttons = 9;
 
+function changeHue(toggle) {
+	if (toggle !== 'on-hue' && toggle !== 'off-hue') {
+		return; //avoid some but not all shenanigans
+	}
+	var hue = document.getElementById(toggle).value;
+	document.documentElement.style.setProperty('--' + toggle, parseInt(hue));
+	
+	localStorage.setItem(toggle, hue);
+}
+
+function expandUtils() {
+	/* Moves utilities into view on a mobile device. */
+	var utils = document.getElementById('utils');
+	if (utils.getAttribute("class") === "expand") {
+		utils.setAttribute("class", "");
+	}
+	else {
+		utils.setAttribute("class", "expand");
+	}
+}
+
 function generateGameBoard() {
 	/* Generates a new game board. Called when size changes. */
 	var w = document.querySelector('input[name="game-width"]:checked').value;
 	var h = document.querySelector('input[name="game-height"]:checked').value;
 	localStorage.setItem("width", w);
 	localStorage.setItem("height", h);
-	var viewWidth = 1020/9 * w;
+	var viewWidth = 1000/9 * w;
 	var viewHeight = 1100/9 * h;
 	document.getElementById('svg-grid').setAttribute('viewBox', '0 0 ' + viewWidth + ' ' + viewHeight);
 	
@@ -27,7 +48,7 @@ function generateGameBoard() {
 			btn.setAttribute('xlink:href', '#game-button');
 			btn.setAttribute('href', '#game-button');
 			btn.setAttribute('class', 'button on');
-			btn.setAttribute('x', 1020/9 * k);
+			btn.setAttribute('x', 1000/9 * k + 5);
 			btn.setAttribute('y', 1100/9 * j);
 			btn.setAttribute('onclick', 'pressButton(' + n + ')');
 			btn.setAttribute('id', 'b' + n);
@@ -189,6 +210,15 @@ if (localStorage.getItem("width") !== null) {
 if (localStorage.getItem("height") !== null) {
 	document.getElementById("height" + localStorage.getItem("height")).checked = true;
 }
-
+if (localStorage.getItem("on-hue") !== null) {
+	var hue = parseInt(localStorage.getItem("on-hue"));
+	document.getElementById("on-hue").value = hue;
+	document.documentElement.style.setProperty('--on-hue', hue);
+}
+if (localStorage.getItem("off-hue") !== null) {
+	var hue = parseInt(localStorage.getItem("off-hue"));
+	document.getElementById("off-hue").value = hue;
+	document.documentElement.style.setProperty('--off-hue', hue);
+}
 
 generateGameBoard();

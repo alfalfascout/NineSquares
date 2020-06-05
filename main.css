@@ -1,96 +1,176 @@
+:root {
+	--on-hue: 0;
+	--off-hue: 220;
+}
+
 html {
 	padding-top: 0;
+	font-size: 100%;
 }
 
 body {
 	width: 100%;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
 	margin: 0;
-	background-color: #eee;
+	background-color: hsl(0,10%,2%);
+	color: hsl(0,5%,75%);
 	font-family: Geneva, Arial, sans-serif;
+	font-size: 1.2em;
 }
 
 #intro {
 	width: 80%;
-	height: 10%;
+	max-height: 10%;
 	margin: 0 auto;
 	text-align: center;
 }
 
+h1 {
+	font-size: 1.5em;
+}
+
 #svg-grid {
 	width: 95%;
-	height: 70%;
+	height: 80%;
 	margin: 0 2.5%;
 }
 
 rect.outer {
-	filter: brightness(0.7) saturate(1.3);
+	filter: brightness(0.5) saturate(1.5);
+}
+rect.outer, rect.inner {
+	transition: transform 0.05s ease-out;
+}
+
+.on, .off {
+	cursor: pointer;
+}
+
+#game-button:active > rect.outer {
+	transform: scaleY(93%) translateY(8px);
+}
+
+#game-button:active > rect.inner {
+	transform: translateY(8px);
 }
 
 .on {
-	fill: #9e9;
+	fill: hsl(var(--on-hue), 55%, 45%);
+}
+.on:hover {
+	filter: brightness(1.3);
 }
 .off {
-	fill: #e9e;
+	fill: hsl(var(--off-hue), 80%, 15%);
+}
+.off:hover {
+	filter: brightness(1.5);
 }
 
-.utils {
-	width: 80%;
-	height: 20%;
-	padding: 5%;
-	margin: 10% auto;
-	border-radius: 10%;
-	text-align: right;
+#utils {
+	position: relative;
+	top: 0;
+	width: 90%;
+	padding: 1% 5% 5%;
+	margin: 5.5em auto 0;
+	background-color: hsl(0,10%,7%);
+	text-align: center;
+	transition: top 0.5s ease-out;
+}
+
+#utils.expand {
+	top: -25em;
+}
+
+#utils button, .radio-group label {
+	padding: 0.5em;
+	margin: 0;
+	background-color: hsl(0,10%,15%);
+	color: inherit;
+	border-style: none;
+	border-radius: 0.5em;
+	font-size: inherit;
+	cursor: pointer;
+}
+
+#utils button#options-toggle {
+	width: 20%;
+	font-size: 2em;
+	border-width: 0;
+	border-style: none;
+	border-radius: 1em 1em 0 0;
+	background-color: hsl(0,10%,7%);
+}
+
+.radio-group, .above-box, .sliders {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	text-align: center;
+	margin: 1.5em 0;
+}
+
+.above-box {
+	position: absolute;
+	top: -5.9em;
+	left: 0;
+	width: 90%;
+	padding: 0 5%;
+	justify-content: space-between;
+	background: linear-gradient(hsla(0,10%,2%,0%), hsla(0,10%,2%,90%) 50%, hsla(0,10%,2%,100%));
+}
+.above-box>* {
+	width: 30%;
+}
+
+.radio-group span, #message {
+	text-align: left;
+	flex: 3 1 auto;
 }
 
 #message {
-	width: 30%;
-	padding-left: 5%;
-	text-align: left;
+	flex: 0 1 auto;
 }
 
-.utils span {
-	float: left;
-	line-height: 50px;
-}
-
-.reset {
-	display: block;
-	float: left;
-	padding: 6px 8px;
-	margin: 7px 0;
-	border-width: 0 1px 2px;
-	border-color: #000;
-	border-style: solid;
-	border-radius: 4px;
-	text-align: center;
-}
-
-.reset:active {
-	margin: 8px 0 6px;
-	border-width: 0 1px 1px;
-}
-
-.reset:nth-last-of-type(2) {
-	border-right-width: 0;
-	border-radius: 4px 0 0 4px;
-	margin-left: 6px;
-}
-.reset:last-of-type {
-	border-radius: 0 4px 4px 0;
-}
-
-.about {
-	width: 436px;
-	margin: 50px auto;
-}
-
-.reset.inviso {
+.radio-group input {
+	flex: none;
+	position: absolute;
+	visibility: hidden;
 	display: none;
 }
-.reset.roundy {
-	border-radius: 4px;
-	border-width: 1px;
-	margin-right: 10px;
+
+.radio-group label {
+	display: inline-block;
+	flex: 1 1 auto;
+	border-radius: 0;
+}
+
+.radio-group label:first-of-type {
+	border-radius: 0.5em 0 0 0.5em;
+}
+
+.radio-group label:hover, #utils button:hover {
+	background-color: hsl(0,10%,20%);
+}
+
+.radio-group label:active, .radio-group input:checked + label, #utils button:active {
+	background-color: hsl(0,10%,2%);
+}
+
+.radio-group label:last-of-type {
+	border-radius: 0 0.5em 0.5em 0;
+}
+
+.sliders {
+	flex-flow: row wrap;
+}
+
+.sliders input {
+	width: 70%;
+	height: 2em;
+	margin: 1em;
+}
+.sliders label {
+	width: 20%;
 }
