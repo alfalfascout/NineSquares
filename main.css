@@ -1,90 +1,52 @@
+html {
+	padding-top: 0;
+}
+
 body {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	margin: 0;
 	background-color: #eee;
 	font-family: Geneva, Arial, sans-serif;
 }
 
-.game-grid, .color-choice, .reset {
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-#game {
-	margin: 50px 0px 100px;
-}
-
 #intro {
-	width: 400px;
-	margin: 0px auto;
+	width: 80%;
+	height: 10%;
+	margin: 0 auto;
 	text-align: center;
 }
 
-h1 {
-	margin-top: 10px;
+#svg-grid {
+	width: 95%;
+	height: 70%;
+	margin: 0 2.5%;
 }
 
-.game-grid {
-	width: 436px;
-	height: 460px;
-	margin: 0px auto;
-	padding: 20px;
-}
-
-.game-row {
-	height: 140px;
-	width: 460px;
-	margin-bottom: 20px;
-}
-
-.game-row:last-child {
-	margin-bottom: 0px;
-}
-
-.button {
-	float: left;
-	width: 130px;
-	height: 130px;
-	margin-top: 0px;
-	margin-right: 20px;
-	border-width: 0px 1px 5px;
-	border-color: #000;
-	border-style: solid;
-	border-radius: 10px;
-}
-
-.button:active {
-	border-width: 0px 1px 1px;
-	margin-top: 6px;
-}
-
-.button:last-child {
-	margin-right: 0px;
+rect.outer {
+	filter: brightness(0.7) saturate(1.3);
 }
 
 .on {
-	background-color: #9e9;
-	border-color: #6a6;
+	fill: #9e9;
 }
 .off {
-	background-color: #e9e;
-	border-color: #a6a;
+	fill: #e9e;
 }
 
 .utils {
-	width: 416px;
-	min-height: 50px;
-	padding: 10px;
-	margin: 10px auto;
-	border-radius: 10px;
+	width: 80%;
+	height: 20%;
+	padding: 5%;
+	margin: 10% auto;
+	border-radius: 10%;
 	text-align: right;
 }
 
 #message {
-	width: 182px;
-	padding-left: 16px;
+	width: 30%;
+	padding-left: 5%;
 	text-align: left;
 }
 
@@ -97,8 +59,8 @@ h1 {
 	display: block;
 	float: left;
 	padding: 6px 8px;
-	margin: 7px 0px;
-	border-width: 0px 1px 2px;
+	margin: 7px 0;
+	border-width: 0 1px 2px;
 	border-color: #000;
 	border-style: solid;
 	border-radius: 4px;
@@ -106,17 +68,17 @@ h1 {
 }
 
 .reset:active {
-	margin: 8px 0px 6px;
-	border-width: 0px 1px 1px;
+	margin: 8px 0 6px;
+	border-width: 0 1px 1px;
 }
 
 .reset:nth-last-of-type(2) {
-	border-right-width: 0px;
-	border-radius: 4px 0px 0px 4px;
+	border-right-width: 0;
+	border-radius: 4px 0 0 4px;
 	margin-left: 6px;
 }
 .reset:last-of-type {
-	border-radius: 0px 4px 4px 0px;
+	border-radius: 0 4px 4px 0;
 }
 
 .about {

@@ -4,8 +4,11 @@
 
 <title>Nine Squares Game</title>
 
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+<meta charset="utf-8">
+
 <link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="colors.css">
+<!-- <link rel="stylesheet" type="text/css" href="colors.css"> -->
 
 </head>
 
@@ -16,42 +19,71 @@
 
 	<div id="intro">
 		<h1>Nine Squares</h1>
-		<p id="tut">A nine button puzzle game.</p>
 		<noscript><p>This game runs on Javascript. Because Javascript isn't
 			enabled in your browser, the game won't work.</p></noscript>
 	</div>
 
-	<div class="game-grid">
-		<div class="game-row">
-			<div class="button off" id="b0" onclick="pressButton(buttons[0])">
-			</div>
-			<div class="button off" id="b1" onclick="pressButton(buttons[1])">
-			</div>
-			<div class="button off" id="b2" onclick="pressButton(buttons[2])">
-			</div>
-		</div>
-		<div class="game-row">
-			<div class="button off" id="b3" onclick="pressButton(buttons[3])">
-			</div>
-			<div class="button off" id="b4" onclick="pressButton(buttons[4])">
-			</div>
-			<div class="button off" id="b5" onclick="pressButton(buttons[5])">
-			</div>
-		</div>
-		<div class="game-row">
-			<div class="button off" id="b6" onclick="pressButton(buttons[6])">
-			</div>
-			<div class="button off" id="b7" onclick="pressButton(buttons[7])">
-			</div>
-			<div class="button off" id="b8" onclick="pressButton(buttons[8])">
-			</div>
-		</div>
-	</div>
+	<svg id="svg-grid" viewBox="0 0 1020 1100" xmlns="http://www.w3.org/2000/svg">
+		<defs>
+			<g id="game-button">
+				<rect class="outer" width="102" height="110" rx="10" ry="10"/>
+				<rect class="inner" width="100" height="100" x="1" rx="10" ry="10"/>
+			</g>
+		</defs>
+		<g id="svg-board">
+		</g>
+	</svg>
+	
 	<div class="utils">
 		<span id="message">&nbsp;</span>
 		<span>New:</span>
-		<div class="reset" onclick="newGame('adjacent')">Adjacent
-		</div><div class="reset" onclick="newGame('random')">Random</div>
+		<button class="reset" onclick="newGame()">New Game
+		</button>
+		
+		<div class="radio-group">
+			<input type="radio" id="adjacent-mode" name="game-mode" value="1" onchange="changeMode()" checked>
+			<label for="adjacent-mode">Adjacent</label>
+			<input type="radio" id="random-mode" name="game-mode"  onchange="changeMode()" value="2">
+			<label for="random-mode">Random</label>
+		</div>
+		
+		<div class="radio-group">
+			<input type="radio" id="width2" name="game-width" value="2" onchange="generateGameBoard()">
+			<label for="width2">2</label>
+			<input type="radio" id="width3" name="game-width" value="3" onchange="generateGameBoard()" checked>
+			<label for="width3">3</label>
+			<input type="radio" id="width4" name="game-width" value="4" onchange="generateGameBoard()">
+			<label for="width4">4</label>
+			<input type="radio" id="width5" name="game-width" value="5" onchange="generateGameBoard()">
+			<label for="width5">5</label>
+			<input type="radio" id="width6" name="game-width" value="6" onchange="generateGameBoard()">
+			<label for="width6">6</label>
+			<input type="radio" id="width7" name="game-width" value="7" onchange="generateGameBoard()">
+			<label for="width7">7</label>
+			<input type="radio" id="width8" name="game-width" value="8" onchange="generateGameBoard()">
+			<label for="width8">8</label>
+			<input type="radio" id="width9" name="game-width" value="9" onchange="generateGameBoard()">
+			<label for="width9">9</label>
+		</div>
+		
+		<div class="radio-group">
+			<input type="radio" id="height2" name="game-height" value="2" onchange="generateGameBoard()">
+			<label for="height2">2</label>
+			<input type="radio" id="height3" name="game-height" value="3" onchange="generateGameBoard()" checked>
+			<label for="height3">3</label>
+			<input type="radio" id="height4" name="game-height" value="4" onchange="generateGameBoard()">
+			<label for="height4">4</label>
+			<input type="radio" id="height5" name="game-height" value="5" onchange="generateGameBoard()">
+			<label for="height5">5</label>
+			<input type="radio" id="height6" name="game-height" value="6" onchange="generateGameBoard()">
+			<label for="height6">6</label>
+			<input type="radio" id="height7" name="game-height" value="7" onchange="generateGameBoard()">
+			<label for="height7">7</label>
+			<input type="radio" id="height8" name="game-height" value="8" onchange="generateGameBoard()">
+			<label for="height8">8</label>
+			<input type="radio" id="height9" name="game-height" value="9" onchange="generateGameBoard()">
+			<label for="height9">9</label>
+		</div>
 	</div>
 
 	<div class="colorchoice">
@@ -80,9 +112,7 @@
 
 	<div class="about">
 		<p><b>Instructions:</b> Click a button to change its color.
-		Try to get all the buttons to be <span id="wincolor">black</span>.
-		<a href="#game" id="tutskip"
-			onclick="setTutorial()">Reset tutorial?</a></p>
+		Try to get all the buttons to be <span id="wincolor">black</span>.</p>
 		<p><a href="https://github.com/alfalfascout/NineSquares">
 			NineSquares on GitHub</a></p>
 	</div>

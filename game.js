@@ -1,17 +1,49 @@
 var msg = document.getElementById("message");
-var tut = document.getElementById("tut");
-var tutskip = document.getElementById("tutskip");
 var resets = document.getElementsByClassName("reset");
-var buttons = [];
+var board = document.getElementById("svg-board");
+var svgns = "http://www.w3.org/2000/svg";
 var i = 0;
-affectsSelf = false;
 var turns = 1;
-tutorial = 0;
+var buttons = 9;
+
+function generateGameBoard() {
+	/* Generates a new game board. Called when size changes. */
+	var w = document.querySelector('input[name="game-width"]:checked').value;
+	var h = document.querySelector('input[name="game-height"]:checked').value;
+	localStorage.setItem("width", w);
+	localStorage.setItem("height", h);
+	var viewWidth = 1020/9 * w;
+	var viewHeight = 1100/9 * h;
+	document.getElementById('svg-grid').setAttribute('viewBox', '0 0 ' + viewWidth + ' ' + viewHeight);
+	
+	while (board.firstChild) { //clear the board
+		board.removeChild(board.lastChild); 
+	}
+	var n = 0;
+	
+	for (var j = 0; j < h; j++) { //make the svg grid
+		for (var k = 0; k < w; k++) {
+			var btn = document.createElementNS(svgns, "use");
+			btn.setAttribute('xlink:href', '#game-button');
+			btn.setAttribute('href', '#game-button');
+			btn.setAttribute('class', 'button on');
+			btn.setAttribute('x', 1020/9 * k);
+			btn.setAttribute('y', 1100/9 * j);
+			btn.setAttribute('onclick', 'pressButton(' + n + ')');
+			btn.setAttribute('id', 'b' + n);
+			
+			board.appendChild(btn);
+			n++;
+		}
+	}
+	
+	buttons = n;
+	newGame(); //now make the buttons actually do something
+}
 
 function turnButton(n) {
 	/* Turns the button on if it's off, and vice versa. */
-	var btx = "b" + n;
-	var btn = document.getElementById(btx);
+	var btn = document.getElementById('b' + n);
 	if (btn.getAttribute("class") === "button off") {
 		btn.setAttribute("class", "button on");
 	}
@@ -20,17 +52,18 @@ function turnButton(n) {
 	}
 }
 
-function turnAffects(bvar) {
+function turnAffects(n) {
 	/* Should turn all the buttons that a given button affects. */
-	for (j in bvar) {
-		turnButton(bvar[j]);
+	var affects = JSON.parse(document.getElementById('b' + n).dataset.affects);
+	for (j in affects) {
+		turnButton(affects[j]);
 	}
 }
 
-function pressButton(bvar) {
+function pressButton(n) {
 	/* Turn all the buttons a given button affects.
 		If that turn won the game, tell the player. */
-	turnAffects(bvar);
+	turnAffects(n);
 	if (checkWin()) {
 		var msg = document.getElementById("message");
 		msg.textContent = "Turn " + turns + ": You won!";
@@ -44,165 +77,118 @@ function pressButton(bvar) {
 }
 
 function randomAffects() {
-	/* This should add a random selection of 0-8 to an array
+	/* This should add a random selection of buttons to an array
 		and return the array to be held in one of the buttons */
-	var affectsArray = [];
-	for (var j = 0; j < 9; j++) {
-		var randomizer = (Math.random() * (3 - 0) + 0);
-		if (randomizer >= 2) {
-			affectsArray.push(j);
-			if (j === i) {
-				affectsSelf = true;
+		
+	for (var j = 0; j < buttons; j++) {
+		var affects = [];
+		//each button will have about a 1/3 chance of affecting every other button
+		for (var k = 0; k < buttons; k++) { 
+			var randomThreshold = (Math.random() * (3 - 0) + 0);
+			if (randomThreshold >= 2) {
+				affects.push(k);
 			}
 		}
+		
+		document.getElementById("b" + j).dataset.affects = JSON.stringify(affects);
 	}
-	return affectsArray;
 }
 
 function adjacentAffects() {
 	/* This should make each button only affect the ones
 		next to it on the board. */
-	buttons[0] = [0,1,3];
-	buttons[1] = [0,1,2,4];
-	buttons[2] = [1,2,5];
-	buttons[3] = [0,3,4,6];
-	buttons[4] = [1,3,4,5,7];
-	buttons[5] = [2,4,5,8];
-	buttons[6] = [3,6,7];
-	buttons[7] = [4,6,7,8];
-	buttons[8] = [5,7,8];
-}
-
-function tutorialAffects() {
-	/* Similar to adjacentAffects(), but only the center button works. */
-	for (var j = 0; j < 9; j++) {
-		if (j === 4) {
-			buttons[j] = [1,3,4,5,7];
+	var w = parseInt(document.querySelector('input[name="game-width"]:checked').value);
+	var h = parseInt(document.querySelector('input[name="game-height"]:checked').value);
+	var affects = [];
+	
+	for (var j = 0; j < buttons; j++) {
+		affects = [j];
+		
+		if (j % w > 0) { //is there a button to the left?
+			affects.push(j - 1);
 		}
-		else {
-			buttons[j] = [];
+		if (j % w < w - 1) { //is there a button to the right?
+			affects.push(j + 1);
 		}
+		if (j >= w) { //is there a button above?
+			affects.push(j - w);
+		}
+		if (j < (w * h) - w) { //is there a button below?
+			affects.push(j + w);
+		}
+		
+		document.getElementById('b' + j).dataset.affects = JSON.stringify(affects);
 	}
 }
 
 function checkWin() {
 	/* If all the buttons are 'on', then the player wins. */
 	var won = true;
-	for (var j = 0; j < 9; j++) {
+	for (var j = 0; j < buttons; j++) {
 		var btx = "b" + j;
 		var btn = document.getElementById(btx);
 		if (btn.getAttribute("class") === "button off") {
 			won = false;
 		}
 	}
-	if (won && tutorial === 1) {
-		tut.textContent = "You can press the Adjacent button below" +
-			" to start a new puzzle!";
-	}
 	return won;
 }
 
-function newGame(mode) {
+function changeMode() {
+	var mode = document.querySelector('input[name="game-mode"]:checked').value;
+	localStorage.setItem('modepref', mode);
+	
+	newGame();
+}
+
+function scramblePuzzle() {
+	/* Starts from a win state,
+		then presses random buttons to create a puzzle. */
+	for (var j = 0; j < 9; j++) { 
+		document.getElementById('b' + j).setAttribute("class", "button on");
+	} // win state
+	
+	var randomizer = (Math.random() * (buttons * 2 - buttons) + buttons); // random number of buttons
+	for (var j = 0; j < randomizer; j++) {
+		var randomButton = parseInt(Math.random() * (buttons - 1) + 0);
+		turnAffects(randomButton);
+	}
+	if (checkWin()) {
+		var randomButton = parseInt(Math.random() * (buttons - 1) + 0);
+		turnAffects(randomButton);
+	}
+}
+
+function newGame() {
 	/* Erase any win message.
 		Reset button affects based on game mode.
-		Randomly decide whether buttons are off or on,
-		By mashing buttons starting from a win state. */
-
-	if (checkWin() && tutorial === 3) {
-		tutorial += 1;
-		tut.textContent = "Try random mode, when you're ready." +
-			" You can change the color scheme at any time.";
-		tutskip.textContent = "Reset tutorial?";
-		resets[0].setAttribute("class", "reset");
-		resets[1].setAttribute("class", "reset");
-		localStorage.setItem("tutorial", "complete");
-	}
-	else if (checkWin() && tutorial > 0 && tutorial < 3) {
-		tutorial += 1;
-	}
-	else if (checkWin() && tutorial > 3) {
-		tutorial = 0;
-		tut.textContent = "A nine button puzzle game.";
-	}
-
+		Scramble the board to create a puzzle. */
+		
+	var mode = document.querySelector('input[name="game-mode"]:checked').value;
+	
 	turns = 1;
 	msg.textContent = "Turn " + turns;
-	localStorage.setItem("modepref", mode);
 
-	if (mode === "random") {
-		for (i = 0; i < 9; i++) {
-			affectsSelf = false;
-			buttons[i] = randomAffects();
-			if (affectsSelf === false) {
-				buttons[i].push(i);
-			}
-		}
+	if (mode === "2") {
+		randomAffects();
 	}
-	else if (mode === "adjacent" && tutorial !== 1) {
+	else {
 		adjacentAffects();
 	}
-	else if (mode === "tutorial") {
-		tutorialAffects();
-	}
-
-	for (var j = 0; j < 9; j++) {
-		var btx = "b" + j;
-		var btn = document.getElementById(btx);
-		btn.setAttribute("class", "button on");
-	}
-
-	if (tutorial === 1) {
-		turnAffects(buttons[4]);
-		tut.textContent = "Try pressing the middle button!";
-	}
-	else if (tutorial === 2) {
-		turnAffects(buttons[0]);
-		turnAffects(buttons[8]);
-		tut.textContent = " Each button changes the ones next to it." +
-			" Try solving this one!";
-	}
-	else if (tutorial === 3) {
-		turnAffects(buttons[3]);
-		turnAffects(buttons[5]);
-		tut.textContent = "This one is a little more difficult." +
-			" Good luck!";
-	}
-	else {
-		var randomizer = (Math.random() * (20 - 10) + 10);
-		for (var j = 0; j < randomizer; j++) {
-			var randomButton = parseInt(Math.random() * (8 - 0) + 0);
-			turnAffects(buttons[randomButton]);
-		}
-		if (checkWin()) {
-			var randomButton = parseInt(Math.random() * (8 - 0) + 0);
-			turnAffects(buttons[randomButton]);
-		}
-	}
+	
+	scramblePuzzle();
 }
 
-function setTutorial() {
-	if (!localStorage.getItem("tutorial")) {
-		localStorage.setItem("tutorial", "complete");
-	}
-	else {
-		localStorage.removeItem("tutorial");
-	}
-	location.reload(true);
+/* If the user has settings, try to load them. */
+if (localStorage.getItem("modepref") !== null) {
+	document.getElementById("random-mode").checked = (localStorage.getItem("modepref") === "2");
+}
+if (localStorage.getItem("width") !== null) {
+	document.getElementById("width" + localStorage.getItem("width")).checked = true;
+}
+if (localStorage.getItem("height") !== null) {
+	document.getElementById("height" + localStorage.getItem("height")).checked = true;
 }
 
-/* If the user has never played before, start the tutorial.
-	If the user has played before, try to get their preferred game mode.
-	If that fails, default to adjacent mode. */
-if (!localStorage.getItem("tutorial")) {
-	resets[0].setAttribute("class", "reset roundy");
-	resets[1].setAttribute("class", "reset inviso");
-	tutskip.textContent = "Skip tutorial?";
-	tutorial = 1;
-	newGame("tutorial");
-}
-else if (!localStorage.getItem("modepref")) {
-	newGame("adjacent");
-}
-else {
-	newGame(localStorage.getItem("modepref"));
-}
+
+generateGameBoard();
