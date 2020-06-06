@@ -32,7 +32,7 @@ h1 {
 
 #svg-grid {
 	width: 95%;
-	height: 80%;
+	height: 70%;
 	margin: 0 2.5%;
 }
 
@@ -72,7 +72,7 @@ rect.outer, rect.inner {
 	position: relative;
 	top: 0;
 	width: 90%;
-	padding: 1% 5% 5%;
+	padding: 1% 5% 10%;
 	margin: 5.5em auto 0;
 	background-color: hsl(0,10%,7%);
 	text-align: center;

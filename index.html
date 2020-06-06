@@ -41,6 +41,9 @@
 			<button class="reset" onclick="newGame()">New Game</button>
 		</div>
 		
+		<p>Click a button to change its color.
+			Try to get all the buttons to be <span id="wincolor">bright</span>.</p>
+		
 		<div class="radio-group mode">
 			<span>Game Mode</span>
 			<input type="radio" id="adjacent-mode" name="game-mode" value="1" onchange="changeMode()" checked>
@@ -91,15 +94,14 @@
 		
 		<div class="sliders">
 			<label for="on-hue">On Hue</label>
-			<input id="on-hue" type="range" min="0" max="360" step="1" value="0" onmouseup="changeHue('on-hue')">
+			<input id="on-hue" type="range" min="0" max="360" step="1" value="0" onclick="changeHue('on-hue')">
 			<label for="off-hue">Off Hue</label>
-			<input id="off-hue" type="range" min="0" max="360" step="1" value="220" onmouseup="changeHue('off-hue')">
+			<input id="off-hue" type="range" min="0" max="360" step="1" value="220" onclick="changeHue('off-hue')">
 		</div>
 		
 		
 		<div class="about">
-			<p>Click a button to change its color.
-			Try to get all the buttons to be <span id="wincolor">bright</span>.</p>
+			
 			<p><a href="https://github.com/alfalfascout/NineSquares">
 				NineSquares on GitHub</a></p>
 		</div>

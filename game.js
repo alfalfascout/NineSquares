@@ -85,15 +85,13 @@ function pressButton(n) {
 	/* Turn all the buttons a given button affects.
 		If that turn won the game, tell the player. */
 	turnAffects(n);
+	var msg = document.getElementById("message");
+	turns += 1;
 	if (checkWin()) {
-		var msg = document.getElementById("message");
-		msg.textContent = "Turn " + turns + ": You won!";
-		turns += 1;
+		msg.textContent = "Moves: " + turns + ". You won!";
 	}
 	else {
-		turns += 1;
-		var msg = document.getElementById("message");
-		msg.textContent = "Turn " + turns;
+		msg.textContent = "Moves: " + turns;
 	}
 }
 
@@ -187,8 +185,8 @@ function newGame() {
 		
 	var mode = document.querySelector('input[name="game-mode"]:checked').value;
 	
-	turns = 1;
-	msg.textContent = "Turn " + turns;
+	turns = 0;
+	msg.textContent = "Moves: " + turns;
 
 	if (mode === "2") {
 		randomAffects();
