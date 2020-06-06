@@ -21,9 +21,11 @@ function expandUtils() {
 	var utils = document.getElementById('utils');
 	if (utils.getAttribute("class") === "expand") {
 		utils.setAttribute("class", "");
+		document.documentElement.scrollIntoView();
 	}
 	else {
 		utils.setAttribute("class", "expand");
+		utils.scrollIntoView(false);
 	}
 }
 
