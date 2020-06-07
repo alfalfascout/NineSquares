@@ -74,10 +74,14 @@ function binToHex(board) { //convert in pieces
 	return hex;
 }
 
-function hexToBin(board) { //convert in pieces
+function hexToBin(dim, board) { //convert in pieces
 	var bin = '';
+	var pad = 4;
 	for (var n = 0; n < board.length; n++) {
-		bin += parseInt(board[n], 16).toString(2).padStart(4,'0');
+		if (n === board.length - 1) {
+			pad = dim - bin.length;
+		}
+		bin += parseInt(board[n], 16).toString(2).padStart(pad,'0');
 	}
 	return bin;
 }
@@ -86,7 +90,7 @@ function decodeBoard(prefabString) {
 	var prefab = {};
 	prefab['w'] = parseInt(prefabString[0]);
 	prefab['h'] = parseInt(prefabString[2]);
-	prefab['buttons'] = hexToBin(prefabString.substring(4)).padStart(prefab['w'] * prefab['h']);
+	prefab['buttons'] = hexToBin(prefab['w'] * prefab['h'], prefabString.substring(4)).padStart(prefab['w'] * prefab['h']);
 	
 	return prefab;
 }
