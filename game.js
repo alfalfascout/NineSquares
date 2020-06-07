@@ -39,7 +39,7 @@ function resetShareLink() {
 function shareBoard() {
 	var boardCode = encodeBoard();
 	var shareLink = document.getElementById('share-link');
-	var path = pageURL.protocol + pageURL.host + '?board=' + boardCode;
+	var path = pageURL.origin + pageURL.pathname + '?board=' + boardCode;
 	
 	shareLink.lastElementChild.setAttribute('href', path);
 	shareLink.firstElementChild.value = path;
