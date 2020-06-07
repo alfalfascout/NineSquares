@@ -1,8 +1,7 @@
-var msg = document.getElementById("message");
-var resets = document.getElementsByClassName("reset");
-var board = document.getElementById("svg-board");
-var svgns = "http://www.w3.org/2000/svg";
-var i = 0;
+const msg = document.getElementById("message");
+const board = document.getElementById("svg-board");
+const svgns = "http://www.w3.org/2000/svg";
+const pageURL = new URL(window.location.href);
 var turns = 1;
 var buttons = 9;
 
@@ -29,10 +28,82 @@ function expandUtils() {
 	}
 }
 
-function generateGameBoard() {
-	/* Generates a new game board. Called when size changes. */
+function resetShareLink() {
+	var shareLink = document.getElementById('share-link');
+	
+	shareLink.firstElementChild.value = "";
+	shareLink.lastElementChild.textContent = "";
+	shareLink.lastElementChild.setAttribute('href', '');
+}
+
+function shareBoard() {
+	var boardCode = encodeBoard();
+	var shareLink = document.getElementById('share-link');
+	var path = pageURL.protocol + pageURL.host + '?board=' + boardCode;
+	
+	shareLink.lastElementChild.setAttribute('href', path);
+	shareLink.firstElementChild.value = path;
+	shareLink.firstElementChild.removeAttribute('class');
+	shareLink.firstElementChild.select();
+	document.execCommand('copy');
+	shareLink.firstElementChild.setAttribute('class', 'hide');
+	shareLink.lastElementChild.textContent = "Copied! Or click here.";
+}
+
+function encodeBoard() {
+	var buttonElements = document.getElementsByClassName('button');
 	var w = document.querySelector('input[name="game-width"]:checked').value;
 	var h = document.querySelector('input[name="game-height"]:checked').value;
+	var boardCode = w + 'x' + h + 'x';
+	var binString = '';
+	
+	for (const button of buttonElements) {
+		binString += (button.getAttribute('class') === 'button on' ? '1' : '0');
+	}
+	
+	boardCode += binToHex(binString);
+	
+	return boardCode;
+}
+
+function binToHex(board) { //convert in pieces
+	var hex = '';
+	for (var n4 = 0; n4 < board.length; n4 += 4) {
+		hex += parseInt(board.substring(n4, n4 + 4), 2).toString(16);
+	}
+	return hex;
+}
+
+function hexToBin(board) { //convert in pieces
+	var bin = '';
+	for (var n = 0; n < board.length; n++) {
+		bin += parseInt(board[n], 16).toString(2).padStart(4,'0');
+	}
+	return bin;
+}
+
+function decodeBoard(prefabString) {
+	var prefab = {};
+	prefab['w'] = parseInt(prefabString[0]);
+	prefab['h'] = parseInt(prefabString[2]);
+	prefab['buttons'] = hexToBin(prefabString.substring(4)).padStart(prefab['w'] * prefab['h']);
+	
+	return prefab;
+}
+
+function buildPrefab(prefabString) {
+	var prefab = decodeBoard(prefabString);
+	
+	document.getElementById('width' + prefab.w).checked = true;
+	document.getElementById('height' + prefab.h).checked = true;
+	
+	generateGameBoard(prefab);
+}
+
+function generateGameBoard(prefab = null) {
+	/* Generates a new game board. Called when size changes. */
+	var w = (prefab === null ? document.querySelector('input[name="game-width"]:checked').value : prefab.w);
+	var h = (prefab === null ? document.querySelector('input[name="game-height"]:checked').value : prefab.h);
 	localStorage.setItem("width", w);
 	localStorage.setItem("height", h);
 	var viewWidth = 1000/9 * w;
@@ -61,7 +132,7 @@ function generateGameBoard() {
 	}
 	
 	buttons = n;
-	newGame(); //now make the buttons actually do something
+	newGame(prefab); //now make the buttons actually do something
 }
 
 function turnButton(n) {
@@ -87,7 +158,6 @@ function pressButton(n) {
 	/* Turn all the buttons a given button affects.
 		If that turn won the game, tell the player. */
 	turnAffects(n);
-	var msg = document.getElementById("message");
 	turns += 1;
 	if (checkWin()) {
 		msg.textContent = "Moves: " + turns + ". You won!";
@@ -180,7 +250,7 @@ function scramblePuzzle() {
 	}
 }
 
-function newGame() {
+function newGame(prefab = null) {
 	/* Erase any win message.
 		Reset button affects based on game mode.
 		Scramble the board to create a puzzle. */
@@ -189,27 +259,29 @@ function newGame() {
 	
 	turns = 0;
 	msg.textContent = "Moves: " + turns;
-
+	resetShareLink();
+	
 	if (mode === "2") {
 		randomAffects();
+		document.getElementById('share-link').setAttribute('class', 'hide');
 	}
 	else {
 		adjacentAffects();
+		document.getElementById('share-link').removeAttribute('class');
 	}
 	
-	scramblePuzzle();
+	if (prefab === null) {
+		scramblePuzzle();
+	}
+	else {
+		var buttonElements = document.getElementsByClassName('button')
+		for (var n = 0; n < buttons; n++) {
+			buttonElements[n].setAttribute('class', (prefab['buttons'][n] === '1' ? 'button on' : 'button off'));
+		}
+	}
 }
 
 /* If the user has settings, try to load them. */
-if (localStorage.getItem("modepref") !== null) {
-	document.getElementById("random-mode").checked = (localStorage.getItem("modepref") === "2");
-}
-if (localStorage.getItem("width") !== null) {
-	document.getElementById("width" + localStorage.getItem("width")).checked = true;
-}
-if (localStorage.getItem("height") !== null) {
-	document.getElementById("height" + localStorage.getItem("height")).checked = true;
-}
 if (localStorage.getItem("on-hue") !== null) {
 	var hue = parseInt(localStorage.getItem("on-hue"));
 	document.getElementById("on-hue").value = hue;
@@ -220,5 +292,18 @@ if (localStorage.getItem("off-hue") !== null) {
 	document.getElementById("off-hue").value = hue;
 	document.documentElement.style.setProperty('--off-hue', hue);
 }
-
-generateGameBoard();
+if (pageURL.searchParams.has('board')) {
+	buildPrefab(pageURL.searchParams.get('board'));
+}
+else {
+	if (localStorage.getItem("modepref") !== null) {
+		document.getElementById("random-mode").checked = (localStorage.getItem("modepref") === "2");
+	}
+	if (localStorage.getItem("width") !== null) {
+		document.getElementById("width" + localStorage.getItem("width")).checked = true;
+	}
+	if (localStorage.getItem("height") !== null) {
+		document.getElementById("height" + localStorage.getItem("height")).checked = true;
+	}
+	generateGameBoard();
+}

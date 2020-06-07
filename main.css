@@ -97,7 +97,7 @@ rect.outer, rect.inner {
 	background-color: hsl(0,10%,7%);
 }
 
-.radio-group, .above-box, .sliders {
+.radio-group, .above-box, .sliders, #share-link {
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -127,7 +127,7 @@ rect.outer, rect.inner {
 	flex: 0 1 auto;
 }
 
-.radio-group input {
+.radio-group input, .hide {
 	flex: none;
 	position: absolute;
 	visibility: hidden;
@@ -167,4 +167,8 @@ rect.outer, rect.inner {
 }
 .sliders label {
 	width: 20%;
+}
+
+#share-link {
+	flex-flow: column nowrap;
 }
